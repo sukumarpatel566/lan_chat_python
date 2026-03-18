@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LAN Chat - Secure Station</title>
+    <!-- Premium Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css?v=10" />
+</head>
+
+<body class="light-theme">
+    <!-- Login Backdrop & Modal -->
+    <div id="username-modal" class="modal-overlay">
+        <div class="login-card glass">
+            <div class="login-header">
+                <div class="login-icon">🛡️</div>
+                <h1>Secure Station</h1>
+                <p>Enterprise LAN Communication</p>
+            </div>
+            <form id="login-form">
+                <div class="input-field">
+                    <label for="username-input">Nominal ID</label>
+                    <input type="text" id="username-input" placeholder="e.g. Commander" maxlength="20" required
+                        autocomplete="off" />
+                </div>
+                <button type="submit" id="username-confirm" class="btn-primary">Connect to Hub</button>
+            </form>
+            <p id="username-error" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="app-layout hidden" id="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <header class="sidebar-header">
+                <div class="user-profile">
+                    <div class="avatar" id="my-avatar">U</div>
+                    <div class="user-meta">
+                        <span class="user-name" id="my-username">Username</span>
+                        <div class="status-indicator">
+                            <span class="status-dot online"></span>
+                            <span class="status-text">Online</span>
+                        </div>
+                    </div>
+                </div>
+                <button id="theme-toggle" class="icon-btn" title="Toggle Theme">🌙</button>
+            </header>
+
+            <div class="sidebar-search">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="user-search" placeholder="Search Stations..." />
+                </div>
+            </div>
+
+            <nav class="station-list" id="user-list">
+                <!-- Stations injected here -->
+            </nav>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-view">
+            <header class="chat-header glass">
+                <button id="sidebar-toggle" class="mobile-only">☰</button>
+                <div class="active-connection">
+                    <div class="avatar" id="active-chat-avatar">GC</div>
+                    <div class="connection-info">
+                        <h2 id="chat-title">Chat Hub</h2>
+                        <span id="chat-status-text">chatting room...</span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn" id="menu-trigger" title="Settings">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <circle cx="12" cy="5" r="1"></circle>
+                            <circle cx="12" cy="19" r="1"></circle>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu glass" id="header-dropdown">
+                        <ul id="menu-list"></ul>
+                    </div>
+                </div>
+            </header>
+
+            <section class="messages-container" id="message-container">
+                <div class="welcome-screen" id="welcome-screen">
+                    <div class="welcome-content">
+                        <div class="welcome-icon">📡</div>
+                        <h3>Connection Established</h3>
+                        <p>Select a station to begin secure data transmission.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div id="typing-indicator" class="typing-pill hidden">
+                <span id="typing-text"></span><span class="dot-stream">...</span>
+            </div>
+
+            <div id="reply-preview" class="reply-bar hidden">
+                <div class="reply-details">
+                    <span class="reply-owner" id="reply-user">User</span>
+                    <span class="reply-content" id="reply-text-preview">Snippet...</span>
+                </div>
+                <button class="small-icon" id="cancel-reply">✕</button>
+            </div>
+
+            <footer class="input-footer">
+                <div class="input-group glass">
+                    <button id="attach-button" class="tool-btn" title="Attach Asset">📎</button>
+                    <input type="file" id="file-input" class="hidden" />
+
+                    <div class="input-wrapper" id="drop-zone">
+                        <input type="text" id="message-input" placeholder="Enter secure transmission..."
+                            autocomplete="off" />
+                    </div>
+
+                    <div class="emoji-engine">
+                        <button id="emoji-button" class="tool-btn">🙂</button>
+                        <div id="emoji-picker" class="emoji-dropdown hidden">
+                            <div class="emoji-grid" id="emoji-grid"></div>
+                        </div>
+                    </div>
+
+                    <button id="send-button" class="send-btn">➤</button>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Global Modals -->
+    <div id="global-modal" class="modal-mask hidden">
+        <div class="modal-content glass">
+            <header class="modal-header">
+                <h3 id="modal-title">System Intel</h3>
+                <button class="close-btn" id="close-modal-btn">✕</button>
+            </header>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <div id="msg-context-menu" class="context-menu">
+        <ul>
+            <li id="menu-reply">Reply</li>
+            <li id="menu-delete" class="danger">Erase Data</li>
+        </ul>
+    </div>
+
+    <script src="/static/script.js?v=10" defer></script>
+</body>
+
+</html>
